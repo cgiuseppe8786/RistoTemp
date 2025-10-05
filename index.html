@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elenco ristorazione — schede</title>
+    <meta name="color-scheme" content="light dark">
+    <style>
+        :root {
+            --bg: #0b1020;
+            --panel: #0f172a;
+            --card: #101a2e;
+            --text: #e5e7eb;
+            --muted: #9aa6bf;
+            --brand: #22d3ee;
+            --border: #1f2a4a;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --max: 1100px;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f6f8fb;
+                --panel: #ffffff;
+                --card: #ffffff;
+                --text: #0b1020;
+                --muted: #566072;
+                --brand: #0ea5b6;
+                --border: #e5e7eb;
+                --shadow: 0 6px 20px rgba(0, 0, 0, .08);
+            }
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%
+        }
+
+        body {
+            font: 500 16px/1.65 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 700px at 20% -10%, rgba(34, 211, 238, .10), transparent 60%),
+                radial-gradient(900px 600px at 120% 10%, rgba(167, 139, 250, .12), transparent 60%),
+                linear-gradient(180deg, var(--bg), color-mix(in oklab, var(--bg) 85%, black 15%));
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: color-mix(in oklab, var(--panel) 70%, transparent);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: saturate(1.2) blur(8px)
+        }
+
+        .nav {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: var(--brand);
+            box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 30%, transparent)
+        }
+
+        .brand {
+            font-weight: 900;
+            letter-spacing: .2px
+        }
+
+        main {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 24px 20px 40px
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: clamp(22px, 4.8vw, 36px);
+            line-height: 1.15
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px
+        }
+
+        @media(min-width: 840px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media(min-width: 1140px) {
+            .grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 85%, transparent));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card p {
+            margin: 0
+        }
+
+        .card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0;
+            overflow: hidden;
+            border-radius: 12px
+        }
+
+        .card th,
+        .card td {
+            border: 1px solid var(--border);
+            padding: 8px 10px;
+            vertical-align: top
+        }
+
+        .card tr:nth-child(even) td {
+            background: color-mix(in oklab, var(--panel) 85%, transparent)
+        }
+
+        a {
+            color: var(--brand);
+            text-decoration: underline;
+            word-break: break-word
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 12px
+        }
+
+        input[type="search"] {
+            flex: 1;
+            min-width: 220px;
+            padding: .7rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: color-mix(in oklab, var(--panel) 80%, transparent);
+            color: var(--text)
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 40px 0 10px;
+            color: var(--brand);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav"><span class="dot"></span><span class="brand">Elenco ristorazione</span></div>
+    </header>
+    <main>
+
+        <section id="grid" class="grid">
+
+
+
+            <div class="section-title">🍽️ Ristorazione nei pressi della sede del corso</div>
+
+
+
+            <article class="card">
+                <p>Enna Sushi &amp; Drink</p>
+                <p>📍 Viale IV Novembre, 50/52 – Enna</p>
+                <p>🕒 Sabato: 12:30–14:30 / 18:30–22:30</p>
+                <p>🕒 Domenica: 12:30–14:30 / 18:30–22:30</p>
+                <p>🌐 <a href="https://ennasushiedrink.it/">https://ennasushiedrink.it/</a></p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/S4xbibww1dAfN1Z78">https://maps.app.goo.gl/S4xbibww1dAfN1Z78</a>
+                </p>
+                <p>📞 338 863 1779</p>
+            </article>
+            <article class="card">
+                <p>Ristorante L’Angolo dei Mille Sapori (ex Liolà)</p>
+                <p>📍 Via Duca D’Aosta, 2 – Enna</p>
+                <p>🕒 Sabato/Domenica: 10:00–15:00 / 18:00–23:00</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/EeMYk5MNp4kF9F1T7">https://maps.app.goo.gl/EeMYk5MNp4kF9F1T7</a>
+                </p>
+                <p>📞 389 157 5661</p>
+            </article>
+            <article class="card">
+                <p>Trattoria Cofano</p>
+                <p>📍 Via Libertà, 95 – Enna</p>
+                <p>🕒 Sabato: 12:00–15:00</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/KqhzLKUoLTrgtnpe7">https://maps.app.goo.gl/KqhzLKUoLTrgtnpe7</a>
+                </p>
+                <p>📞 348 117 6062</p>
+            </article>
+            <article class="card">
+                <p>Sorrento Bar • Ristorante • Pizzeria • Pasticceria</p>
+                <p>📍 Via Trieste, 4 – Enna</p>
+                <p>🕒 Sabato: 06:30–00:00</p>
+                <p>🕒 Domenica: 06:30–23:00</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/Qy5KCBCUikELhXG2A">https://maps.app.goo.gl/Qy5KCBCUikELhXG2A</a>
+                </p>
+                <p>📞 0935 25630</p>
+            </article>
+            <article class="card">
+                <p>Rosticceria Pollomania</p>
+                <p>📍 Via Trieste, 5 – Enna</p>
+                <p>🕒 Sabato/Domenica: Aperto 24 ore su 24</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/XPsCVHfrvA2QrsDx9">https://maps.app.goo.gl/XPsCVHfrvA2QrsDx9</a>
+                </p>
+                <p>📞 0935 24027</p>
+            </article>
+            <article class="card">
+                <p>Bar Erbicella</p>
+                <p>📍 Viale Armando Diaz, 50 – Enna</p>
+                <p>🕒 Domenica: 06:00–21:30</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/v2hzGcXx3YDt2ToA7">https://maps.app.goo.gl/v2hzGcXx3YDt2ToA7</a>
+                </p>
+                <p>📞 0935 501003</p>
+            </article>
+            <article class="card">
+                <p>Trattoria La Rustica</p>
+                <p>📍 Via Gagliano – Enna</p>
+                <p>🕒 Sabato: 13:00–15:00 / 20:00–22:00</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/mT1kpZ4Wrzw2AMYf9">https://maps.app.goo.gl/mT1kpZ4Wrzw2AMYf9</a>
+                </p>
+                <p>📞 0935 25522</p>
+            </article>
+
+
+            <div class="section-title">🚗 Ristorazione per Delivery</div>
+
+
+
+            <article class="card">
+                <p>Fast Food SGARRO O NO?</p>
+                <p>📍 Viale dell’Unità d’Italia, 8 – Enna</p>
+                <p>🕒 Sabato: 10:30–16:00 / 19:00–23:30</p>
+                <p>🌐 <a href="https://booxit.it/app/sgarroono/menu">https://booxit.it/app/sgarroono/menu</a></p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/Bw3dmX6GfDpWzGyW7">https://maps.app.goo.gl/Bw3dmX6GfDpWzGyW7</a>
+                </p>
+                <p>📞 333 571 3663</p>
+                <p>ℹ️ Prenotazioni via sito internet</p>
+            </article>
+            <article class="card">
+                <p>U PITITTU</p>
+                <p>📍 Piazzale de Coubertin, 5 – Enna</p>
+                <p>🕒 Sabato/Domenica: 11:00–15:00 / 18:30–22:30</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/8Z8wQRReLgStzMj87">https://maps.app.goo.gl/8Z8wQRReLgStzMj87</a>
+                </p>
+                <p>📞 327 452 1339</p>
+                <p>ℹ️ Prenotazioni via telefono</p>
+            </article>
+            <article class="card">
+                <p>McDonald&#x27;s</p>
+                <p>📍 Via Libero Grassi, 16 – Enna</p>
+                <p>🕒 Sabato: 07:30–01:00</p>
+                <p>🕒 Domenica: 07:30–00:00</p>
+                <p>📍 Google Maps: <a
+                        href="https://maps.app.goo.gl/rjMNPfsARg6x2bfQ8">https://maps.app.goo.gl/rjMNPfsARg6x2bfQ8</a>
+                </p>
+                <p>📞 0935 072551</p>
+                <p>ℹ️ Ordinazioni via Deliveroo (codice sconto MCROO25) o Glovo (codice sconto MCGRATIS1)</p>
+            </article>
+        </section>
+    </main>
+    <script>
+        const q = document.getElementById('q');
+        const cards = [...document.querySelectorAll('.card')];
+        q.addEventListener('input', () => {
+            const term = q.value.toLowerCase();
+            cards.forEach(c => {
+                c.classList.toggle('hidden', term && !c.textContent.toLowerCase().includes(term));
+            });
+        });
+    </script>
+</body>
+
+</html>
